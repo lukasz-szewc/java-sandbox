@@ -6,9 +6,12 @@ import org.junit.Test;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.Month;
+import java.time.temporal.ChronoUnit;
 
 import static java.lang.Boolean.TRUE;
 import static java.time.LocalDate.of;
+import static java.time.Month.FEBRUARY;
 import static java.time.Month.JUNE;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
@@ -45,6 +48,13 @@ public class NewJodaTimeTest {
         LocalDateTime localDateTime = constructDate().atTime(21, 33);
         assertThat(localDateTime.getMonth(), is(JUNE));
         assertThat(localDateTime.getHour(), is(21));
+    }
+
+    @Test
+    public void canCreateNewLocalDateByAddingYears() throws Exception {
+        LocalDate localDate = of(2004, FEBRUARY, 29);
+        LocalDate nextYear = localDate.plus(1, ChronoUnit.YEARS);
+        assertThat(nextYear, equalTo(of(2005, FEBRUARY, 28)));
     }
 
     private LocalDate constructDate() {
