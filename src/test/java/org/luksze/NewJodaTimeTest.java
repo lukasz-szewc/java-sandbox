@@ -4,6 +4,7 @@ import org.hamcrest.CoreMatchers;
 import org.junit.Test;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 import static java.lang.Boolean.TRUE;
@@ -37,6 +38,13 @@ public class NewJodaTimeTest {
         assertThat(time.getMinute(), is(33));
         assertThat(time.getSecond(), is(44));
         assertThat(time.getNano(), is(2));
+    }
+
+    @Test
+    public void canCreateLocalDateTime() throws Exception {
+        LocalDateTime localDateTime = constructDate().atTime(21, 33);
+        assertThat(localDateTime.getMonth(), is(JUNE));
+        assertThat(localDateTime.getHour(), is(21));
     }
 
     private LocalDate constructDate() {
