@@ -1,22 +1,16 @@
 package org.luksze;
 
-import org.hamcrest.CoreMatchers;
 import org.junit.Test;
 
 import java.time.*;
-import java.time.temporal.ChronoField;
 import java.time.temporal.ChronoUnit;
-import java.time.temporal.TemporalUnit;
-import java.util.List;
 
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
 import static java.time.LocalDate.of;
 import static java.time.Month.FEBRUARY;
 import static java.time.Month.JUNE;
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.not;
+import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
 
 public class NewJodaTimeTest {
