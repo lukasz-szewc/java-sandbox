@@ -7,6 +7,7 @@ import java.time.temporal.ChronoUnit;
 
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
+import static java.time.LocalDate.now;
 import static java.time.LocalDate.of;
 import static java.time.Month.FEBRUARY;
 import static java.time.Month.JUNE;
@@ -63,7 +64,14 @@ public class NewJodaTimeTest {
     }
 
     @Test
-    public void testName() throws Exception {
+    public void canCreateDuration() throws Exception {
+        LocalDateTime referenceDateTime = now().atStartOfDay();
+        Duration duration = Duration.between(referenceDateTime, referenceDateTime.plusMinutes(1).plusSeconds(30));
+        assertThat(duration.getSeconds(), is(90l));
+    }
+
+    @Test
+    public void canUseTimeZones() throws Exception {
         ZonedDateTime londonTime = ZonedDateTime.now(ZoneId.of("Europe/London"));
         ZonedDateTime warsawTime = londonTime.withZoneSameInstant(ZoneId.of("Europe/Warsaw"));
         assertThat(londonTime.isBefore(warsawTime), is(FALSE));
