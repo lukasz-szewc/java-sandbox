@@ -26,9 +26,10 @@ public class NewJodaTimeTest {
 
     @Test
     public void equalityOfLocalDate() throws Exception {
-        LocalDate date = constructDate();
-        assertThat(date, equalTo(constructDate()));
-        assertThat(date.compareTo(constructDate()), is(0));
+        LocalDate firstDate = constructDate();
+        LocalDate secondDate = constructDate();
+        assertThat(firstDate, equalTo(secondDate));
+        assertThat(firstDate.compareTo(secondDate), is(0));
     }
 
     @Test
@@ -65,15 +66,20 @@ public class NewJodaTimeTest {
 
     @Test
     public void canCreateDuration() throws Exception {
+        long seconds = 90l;
         LocalDateTime referenceDateTime = now().atStartOfDay();
-        Duration duration = Duration.between(referenceDateTime, referenceDateTime.plusMinutes(1).plusSeconds(30));
-        assertThat(duration.getSeconds(), is(90l));
+        Duration duration = Duration.between(referenceDateTime, referenceDateTime.plusSeconds(seconds));
+        assertThat(duration.getSeconds(), is(seconds));
     }
 
     @Test
     public void canUseTimeZones() throws Exception {
         ZonedDateTime londonTime = ZonedDateTime.now(ZoneId.of("Europe/London"));
         ZonedDateTime warsawTime = londonTime.withZoneSameInstant(ZoneId.of("Europe/Warsaw"));
+        assertTimezones(londonTime, warsawTime);
+    }
+
+    private void assertTimezones(ZonedDateTime londonTime, ZonedDateTime warsawTime) {
         assertThat(londonTime.isBefore(warsawTime), is(FALSE));
         assertThat(londonTime.isAfter(warsawTime), is(FALSE));
         assertThat(warsawTime.minusHours(1).toLocalDateTime(), equalTo(londonTime.toLocalDateTime()));
