@@ -1,11 +1,10 @@
 package org.luksze;
 
 import org.junit.Test;
-import org.luksze.DefaultMethodImplementation.OverriddenDefaultMethodImplementation;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
-import static org.luksze.DefaultMethodImplementation.OverriddenDefaultMethodImplementation.OTHER_VALUE;
+import static org.luksze.OverriddenDefaultMethodImplementation.OTHER_VALUE;
 import static org.luksze.DefaultMethodInterface.DEFAULT_VALUE;
 
 public class InterfaceDefaultMethodTest {
