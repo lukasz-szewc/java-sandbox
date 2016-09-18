@@ -16,7 +16,7 @@ public class InterfaceDefaultMethodTest {
     }
 
     @Test
-    public void canCreateAnonymousImplementaterWithDefaultMethod() throws Exception {
+    public void canCreateAnonymousImplementationWithDefaultMethod() throws Exception {
         DefaultMethodInterface implementation = new DefaultMethodInterface() {};
         assertThat(implementation.defaultValue(), equalTo(DEFAULT_VALUE));
     }
