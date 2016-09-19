@@ -7,8 +7,7 @@ import java.util.HashSet;
 import java.util.stream.IntStream;
 
 import static java.lang.Thread.currentThread;
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 public class ParallelStreamTest {
 
@@ -27,7 +26,7 @@ public class ParallelStreamTest {
         parallelStream.forEach(integer -> setOfUniqueThreads.add(currentThread()));
 
         // then
-        assertThat(setOfUniqueThreads.size(), is(5 + 1));
+        assertTrue(setOfUniqueThreads.size() > 1);
     }
 
     private void configureNumberOfThreads(String value) {
