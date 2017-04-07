@@ -76,14 +76,23 @@ public class NewJodaTimeTest {
     public void canUseTimeZones() throws Exception {
         ZonedDateTime londonTime = ZonedDateTime.now(ZoneId.of("Europe/London"));
         ZonedDateTime warsawTime = londonTime.withZoneSameInstant(ZoneId.of("Europe/Warsaw"));
-        assertTimezones(londonTime, warsawTime);
-    }
 
-    private void assertTimezones(ZonedDateTime londonTime, ZonedDateTime warsawTime) {
         assertThat(londonTime.isBefore(warsawTime), is(FALSE));
         assertThat(londonTime.isAfter(warsawTime), is(FALSE));
         assertThat(warsawTime.minusHours(1).toLocalDateTime(), equalTo(londonTime.toLocalDateTime()));
         assertThat(warsawTime.minusHours(1), not(equalTo(londonTime)));
+    }
+
+    @Test
+    public void zoneIdDealsWithDaylightSavingTime() throws Exception {
+        ZonedDateTime beforeTimeChange = ZonedDateTime.of(2017, 3, 26, 1, 30, 0, 0, ZoneId.of("Europe/Warsaw"));
+        ZonedDateTime afterTimeChange =  ZonedDateTime.of(2017, 3, 26, 2, 30, 0, 0, ZoneId.of("Europe/Warsaw"));
+
+        assertThat(beforeTimeChange.plusHours(1), equalTo(afterTimeChange));
+        assertThat(beforeTimeChange, equalTo(afterTimeChange.minusHours(1)));
+        assertThat(beforeTimeChange.toLocalDateTime(), equalTo(afterTimeChange.toLocalDateTime().minusHours(2)));
+        assertThat(beforeTimeChange.getOffset(), equalTo(ZoneOffset.ofHours(1)));
+        assertThat(afterTimeChange.getOffset(), equalTo(ZoneOffset.ofHours(2)));
     }
 
     private LocalDate constructDate() {
