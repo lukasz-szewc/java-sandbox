@@ -6,7 +6,7 @@ import org.junit.Test;
 public class SomeNotFullyCoveredClassTest {
 
     @Test
-    public void someTest() throws Exception {
+    public void shouldHitFirstCondition() throws Exception {
         SomeNotFullyCoveredClass sut = new SomeNotFullyCoveredClass();
 
         boolean abc = sut.complexCondition("abc");
@@ -14,4 +14,15 @@ public class SomeNotFullyCoveredClassTest {
         Assert.assertFalse(abc);
 
     }
+
+    @Test
+    public void someTest() throws Exception {
+        SomeNotFullyCoveredClass sut = new SomeNotFullyCoveredClass();
+
+        boolean abc = sut.complexCondition("abcdef");
+
+        Assert.assertFalse(abc);
+
+    }
+
 }
