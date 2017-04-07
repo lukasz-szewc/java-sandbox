@@ -31,7 +31,17 @@ public class SomeNotFullyCoveredClassTest {
     public void shouldHitThirdCondition() throws Exception {
         SomeNotFullyCoveredClass sut = new SomeNotFullyCoveredClass();
 
-        boolean string = sut.complexCondition("Boston");
+        boolean string = sut.complexCondition("boston");
+
+        assertTrue(string);
+
+    }
+
+    @Test
+    public void shouldHitThirdAndFourtCondition() throws Exception {
+        SomeNotFullyCoveredClass sut = new SomeNotFullyCoveredClass();
+
+        boolean string = sut.complexCondition("barbarossa");
 
         assertTrue(string);
 
