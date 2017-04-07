@@ -1,7 +1,8 @@
 package org.luksze;
 
-import org.junit.Assert;
 import org.junit.Test;
+
+import static org.junit.Assert.assertFalse;
 
 public class SomeNotFullyCoveredClassTest {
 
@@ -9,19 +10,29 @@ public class SomeNotFullyCoveredClassTest {
     public void shouldHitFirstCondition() throws Exception {
         SomeNotFullyCoveredClass sut = new SomeNotFullyCoveredClass();
 
-        boolean abc = sut.complexCondition("abc");
+        boolean string = sut.complexCondition("abc");
 
-        Assert.assertFalse(abc);
+        assertFalse(string);
 
     }
 
     @Test
-    public void someTest() throws Exception {
+    public void shouldHitSecondCondition() throws Exception {
         SomeNotFullyCoveredClass sut = new SomeNotFullyCoveredClass();
 
-        boolean abc = sut.complexCondition("abcdef");
+        boolean string = sut.complexCondition("abcdef");
 
-        Assert.assertFalse(abc);
+        assertFalse(string);
+
+    }
+
+    @Test
+    public void shouldHitThirdCondition() throws Exception {
+        SomeNotFullyCoveredClass sut = new SomeNotFullyCoveredClass();
+
+        boolean string = sut.complexCondition("Boston");
+
+        assertFalse(string);
 
     }
 
