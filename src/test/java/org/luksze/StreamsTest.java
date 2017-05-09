@@ -1,14 +1,18 @@
 package org.luksze;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Random;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import static java.lang.Character.valueOf;
 import static java.lang.Integer.valueOf;
+import static java.util.stream.Collectors.toList;
 import static org.hamcrest.core.IsCollectionContaining.hasItem;
 import static org.junit.Assert.*;
 
@@ -105,7 +109,7 @@ public class StreamsTest {
         Stream<YearOfLife> stream = Stream.iterate(new YearOfLife(1), YearOfLife::nextOne);
 
         //when
-        List<YearOfLife> list = stream.limit(4).collect(Collectors.toList());
+        List<YearOfLife> list = stream.limit(4).collect(toList());
 
         //then
         assertEquals(list.size(), 4);
@@ -113,5 +117,22 @@ public class StreamsTest {
         assertThat(list, hasItem(new YearOfLife(2)));
         assertThat(list, hasItem(new YearOfLife(3)));
         assertThat(list, hasItem(new YearOfLife(4)));
+    }
+
+    @Test
+    public void randomNumbersCanBeGeneratedAsStream() throws Exception {
+        //given
+        IntStream ints = new Random().ints(0, 30);
+        AtomicInteger counter = new AtomicInteger();
+
+        //when
+        boolean foundFlag = ints.anyMatch(value -> {
+            counter.incrementAndGet();
+            return value == 15;
+        });
+
+        //then
+        Assert.assertTrue(foundFlag);
+        Assert.assertTrue(counter.get() >= 1 && counter.get() < 10000);
     }
 }
