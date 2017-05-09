@@ -1,15 +1,14 @@
 package org.luksze;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.LinkedList;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Stream;
 
 import static java.lang.Character.valueOf;
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static java.lang.Integer.valueOf;
+import static org.junit.Assert.*;
 
 public class StreamsTest {
 
@@ -34,7 +33,7 @@ public class StreamsTest {
         LinkedList<String> invocationList = new LinkedList<>();
 
         //when
-        Stream.of('a', 'b').map(character -> {
+        String[] strings = Stream.of('a', 'b').map(character -> {
             String string = character.toString();
             invocationList.addLast(string);
             return string;
@@ -58,7 +57,7 @@ public class StreamsTest {
         LinkedList<Character> invocationList = new LinkedList<>();
 
         //when
-        Stream.of('a', 'b').filter(character -> {
+        String[] strings = Stream.of('a', 'b').filter(character -> {
             invocationList.addLast(character);
             return character != 'a';
         }).map(character -> {
@@ -73,4 +72,17 @@ public class StreamsTest {
         assertEquals(invocationList.pollFirst(), valueOf('b'));
         assertTrue(invocationList.isEmpty());
     }
+
+    @Test
+    public void simpleSumReductionTest() throws Exception {
+        //given
+        Stream<Integer> integerStream = Stream.of(1, 4, 6, 7, 9);
+
+        //when
+        Integer sum = integerStream.reduce(0, (first, second) -> first + second);
+
+        //then
+        Assert.assertEquals(sum, valueOf(27));
+    }
+
 }
