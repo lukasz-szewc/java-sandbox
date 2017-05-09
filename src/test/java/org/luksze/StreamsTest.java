@@ -1,13 +1,15 @@
 package org.luksze;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.LinkedList;
+import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static java.lang.Character.valueOf;
 import static java.lang.Integer.valueOf;
+import static org.hamcrest.core.IsCollectionContaining.hasItem;
 import static org.junit.Assert.*;
 
 public class StreamsTest {
@@ -82,7 +84,34 @@ public class StreamsTest {
         Integer sum = integerStream.reduce(0, (first, second) -> first + second);
 
         //then
-        Assert.assertEquals(sum, valueOf(27));
+        assertEquals(sum, valueOf(27));
     }
 
+    @Test
+    public void ssimpleSumReductionTest() throws Exception {
+        //given
+        Stream<Integer> integerStream = Stream.of(1, 4, 6, 7, 9);
+
+        //when
+        Integer sum = integerStream.reduce(0, (first, second) -> first + second);
+
+        //then
+        assertEquals(sum, valueOf(27));
+    }
+
+    @Test
+    public void infiniteStreamExample() throws Exception {
+        //given
+        Stream<YearOfLife> stream = Stream.iterate(new YearOfLife(1), YearOfLife::nextOne);
+
+        //when
+        List<YearOfLife> list = stream.limit(4).collect(Collectors.toList());
+
+        //then
+        assertEquals(list.size(), 4);
+        assertThat(list, hasItem(new YearOfLife(1)));
+        assertThat(list, hasItem(new YearOfLife(2)));
+        assertThat(list, hasItem(new YearOfLife(3)));
+        assertThat(list, hasItem(new YearOfLife(4)));
+    }
 }
