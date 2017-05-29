@@ -1,6 +1,5 @@
 package org.luksze;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.LinkedList;
@@ -39,7 +38,7 @@ public class StreamsTest {
         LinkedList<String> invocationList = new LinkedList<>();
 
         //when
-        String[] strings = Stream.of('a', 'b').map(character -> {
+        Stream.of('a', 'b').map(character -> {
             String string = character.toString();
             invocationList.addLast(string);
             return string;
@@ -63,7 +62,7 @@ public class StreamsTest {
         LinkedList<Character> invocationList = new LinkedList<>();
 
         //when
-        String[] strings = Stream.of('a', 'b').filter(character -> {
+        Stream.of('a', 'b').filter(character -> {
             invocationList.addLast(character);
             return character != 'a';
         }).map(character -> {
@@ -132,7 +131,7 @@ public class StreamsTest {
         });
 
         //then
-        Assert.assertTrue(foundFlag);
-        Assert.assertTrue(counter.get() >= 1 && counter.get() < 10000);
+        assertTrue(foundFlag);
+        assertTrue(counter.get() >= 1 && counter.get() < 10000);
     }
 }
