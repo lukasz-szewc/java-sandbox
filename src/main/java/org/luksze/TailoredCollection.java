@@ -40,4 +40,8 @@ public class TailoredCollection {
         return new TailoredCollection(copy);
 
     }
+
+    public boolean containsAll(List<Integer> list) {
+        return integers.containsAll(list);
+    }
 }
