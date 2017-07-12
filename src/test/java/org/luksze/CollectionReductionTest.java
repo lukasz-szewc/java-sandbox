@@ -28,13 +28,7 @@ public class CollectionReductionTest {
 
         //when
         TailoredCollection collection = integerStream.reduce(new TailoredCollection(),
-                (tailoredCollection, integer) -> {
-                    tailoredCollection.add(integer);
-                    return tailoredCollection;
-                }, (tailoredCollection, tailoredCollection2) -> {
-                    tailoredCollection.addAll(tailoredCollection2);
-                    return tailoredCollection;
-                });
+                TailoredCollection::addAndReturn, TailoredCollection::addAllAndReturn);
 
         //then
         assertEquals(collection.toString(), "[1, 2, 3, 4, 5, 6]");
