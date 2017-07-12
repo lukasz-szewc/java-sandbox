@@ -13,13 +13,6 @@ class YearOfLife {
     }
 
     @Override
-    public String toString() {
-        return "YearOfLife{" +
-                "age=" + age +
-                '}';
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -29,8 +22,4 @@ class YearOfLife {
         return age == that.age;
     }
 
-    @Override
-    public int hashCode() {
-        return age;
-    }
 }
