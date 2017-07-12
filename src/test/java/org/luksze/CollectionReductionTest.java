@@ -46,7 +46,7 @@ public class CollectionReductionTest {
         List<Integer> list = IntStream.range(0, 40000).boxed().collect(toList());
 
         //when
-        TailoredCollection collect = list.stream().collect(TailoredCollection::new,
+        TailoredCollection collect = list.parallelStream().collect(TailoredCollection::new,
                 TailoredCollection::add, TailoredCollection::addAll);
 
         //then
@@ -59,7 +59,7 @@ public class CollectionReductionTest {
         List<Integer> list = IntStream.range(0, 20000).boxed().collect(toList());
 
         //when
-        TailoredCollection collection = list.stream().reduce(new TailoredCollection(),
+        TailoredCollection collection = list.parallelStream().reduce(new TailoredCollection(),
                 TailoredCollection::addAndReturn, TailoredCollection::addAllAndReturn);
 
         //then
