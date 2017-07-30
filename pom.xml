@@ -19,6 +19,12 @@
             <version>4.11</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.luksze</groupId>
+            <artifactId>guava-sandbox</artifactId>
+            <version>0.0.3</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
@@ -69,5 +75,13 @@
             </plugin>
         </plugins>
     </build>
-
+    <repositories>
+        <repository>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>bintray-lukasz-szewc-releases</id>
+            <url>http://dl.bintray.com/lukasz-szewc/releases</url>
+        </repository>
+    </repositories>
 </project>
