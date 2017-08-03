@@ -3,6 +3,7 @@ package org.luksze;
 import org.junit.Test;
 
 import java.util.concurrent.CompletableFuture;
+import java.util.function.Supplier;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -20,6 +21,18 @@ public class CompletableFutureTest {
         //then
         assertThat(stringCompletableFuture.get(), is("OK"));
 
+    }
+
+    @Test
+    public void runAsyncFutureTest() throws Exception {
+        //given
+        CompletableFuture<Integer> integerCompletableFuture = CompletableFuture.supplyAsync(() -> 88);
+
+        //when
+        Integer result = integerCompletableFuture.get();
+
+        //then
+        assertThat(result, is(88));
     }
 
     private void threadThatEventuallyCompletesFuture(CompletableFuture<String> stringCompletableFuture) {
@@ -41,7 +54,7 @@ public class CompletableFutureTest {
 
         private void simulateLongComputation() {
             try {
-                Thread.sleep(1000);
+                Thread.sleep(500);
             } catch (InterruptedException e) {
                 throw new RuntimeException();
             }
