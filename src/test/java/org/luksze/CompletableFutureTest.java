@@ -4,20 +4,16 @@ import org.hamcrest.Description;
 import org.hamcrest.TypeSafeMatcher;
 import org.junit.Test;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.function.Supplier;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 import static java.util.concurrent.CompletableFuture.supplyAsync;
 import static java.util.stream.Collectors.toList;
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertThat;
 
 public class CompletableFutureTest {
@@ -107,4 +103,5 @@ public class CompletableFutureTest {
             throw new RuntimeException();
         }
     }
+
 }
