@@ -34,7 +34,7 @@ public class ReduceTest {
         assertFalse(reduce.isPresent());
     }
 
-   @Test
+    @Test
     public void reductionToOptionalThatWillBePresent() throws Exception {
         //given
         Stream<Integer> integerStream = Stream.of(1, 2, 3, 4, 5, 6);
