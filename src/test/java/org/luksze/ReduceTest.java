@@ -5,7 +5,9 @@ import org.junit.Test;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 public class ReduceTest {
 
@@ -70,5 +72,4 @@ public class ReduceTest {
         //then
         assertEquals(reduced, Integer.valueOf(0));
     }
-
 }
