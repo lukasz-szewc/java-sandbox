@@ -1,6 +1,5 @@
 package org.luksze;
 
-
 class YearOfLife {
     private int age;
 
@@ -22,4 +21,7 @@ class YearOfLife {
         return age == that.age;
     }
 
+    boolean isOlder(YearOfLife yearOfLife) {
+        return age > yearOfLife.age;
+    }
 }

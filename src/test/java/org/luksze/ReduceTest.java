@@ -5,7 +5,9 @@ import org.junit.Test;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 public class ReduceTest {
 
@@ -34,7 +36,7 @@ public class ReduceTest {
         assertFalse(reduce.isPresent());
     }
 
-   @Test
+    @Test
     public void reductionToOptionalThatWillBePresent() throws Exception {
         //given
         Stream<Integer> integerStream = Stream.of(1, 2, 3, 4, 5, 6);
@@ -70,5 +72,4 @@ public class ReduceTest {
         //then
         assertEquals(reduced, Integer.valueOf(0));
     }
-
 }
