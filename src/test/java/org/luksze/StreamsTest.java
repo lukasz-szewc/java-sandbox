@@ -26,7 +26,7 @@ public class StreamsTest {
         Character[] sortedCharsLessThenG = stream
                 .filter(character -> character.compareTo('g') < 0)
                 .sorted()
-                .toArray(Character[]::new);
+                .toArray(value -> new Character[value]);
 
         //then
         assertArrayEquals(sortedCharsLessThenG, new Character[]{'a', 'c', 'e'});
@@ -45,7 +45,7 @@ public class StreamsTest {
         }).filter(string -> {
             invocationList.addLast(string);
             return true;
-        }).toArray(String[]::new);
+        }).toArray(value -> new String[value]);
 
         //then
         assertEquals(invocationList.size(), 4);
@@ -68,7 +68,7 @@ public class StreamsTest {
         }).map(character -> {
             invocationList.addLast(character);
             return character.toString();
-        }).toArray(String[]::new);
+        }).toArray(value -> new String[value]);
 
         //then
         assertEquals(invocationList.size(), 3);
