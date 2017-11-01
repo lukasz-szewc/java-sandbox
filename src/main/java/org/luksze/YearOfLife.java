@@ -1,5 +1,7 @@
 package org.luksze;
 
+import java.util.Objects;
+
 class YearOfLife {
     private int age;
 
@@ -21,6 +23,11 @@ class YearOfLife {
         }
         YearOfLife that = (YearOfLife) o;
         return age == that.age;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(age);
     }
 
     boolean isOlder(YearOfLife yearOfLife) {
