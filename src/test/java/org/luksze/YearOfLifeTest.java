@@ -2,6 +2,7 @@ package org.luksze;
 
 import org.junit.Test;
 
+import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -9,7 +10,7 @@ import static org.junit.Assert.assertThat;
 public class YearOfLifeTest {
 
     @Test
-    public void happyPathTest() throws Exception {
+    public void happyPathTest() {
         //given
         YearOfLife yearOfLife = new YearOfLife(5);
 
@@ -18,7 +19,8 @@ public class YearOfLifeTest {
 
         //then
         assertThat(nextOne.isOlder(yearOfLife), is(TRUE));
+        assertThat(yearOfLife.isOlder(nextOne), is(FALSE));
         assertThat(nextOne, is(nextOne));
-        assertThat(yearOfLife, is(yearOfLife));
+        assertThat(yearOfLife, is(new YearOfLife(5)));
     }
 }
