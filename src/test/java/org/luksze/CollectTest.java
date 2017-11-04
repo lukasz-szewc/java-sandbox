@@ -23,7 +23,7 @@ public class CollectTest {
         StringBuilder collect = integerStream.collect(StringBuilder::new, this::appendIntegers, StringBuilder::append);
 
         //then
-        assertEquals(collect.toString(), "1, 2, 3, 4, 5, 6, ");
+        assertEquals("1, 2, 3, 4, 5, 6, ", collect.toString());
     }
 
     @Test
@@ -38,7 +38,7 @@ public class CollectTest {
                 Collection::addAll);
 
         //then
-        assertEquals(set.size(), 5);
+        assertEquals(5, set.size());
         assertTrue(set.containsAll(asList("0", "1", "2", "3", "4")));
     }
 

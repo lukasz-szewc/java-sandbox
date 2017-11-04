@@ -29,7 +29,7 @@ public class StreamsTest {
                 .toArray(value -> new Character[value]);
 
         //then
-        assertArrayEquals(sortedCharsLessThenG, new Character[]{'a', 'c', 'e'});
+        assertArrayEquals(new Character[]{'a', 'c', 'e'}, sortedCharsLessThenG);
     }
 
     @Test
@@ -48,7 +48,7 @@ public class StreamsTest {
         }).toArray(value -> new String[value]);
 
         //then
-        assertEquals(invocationList.size(), 4);
+        assertEquals(4, invocationList.size());
         assertEquals(invocationList.pollFirst(), "a");
         assertEquals(invocationList.pollFirst(), "a");
         assertEquals(invocationList.pollFirst(), "b");
@@ -71,7 +71,7 @@ public class StreamsTest {
         }).toArray(value -> new String[value]);
 
         //then
-        assertEquals(invocationList.size(), 3);
+        assertEquals(3, invocationList.size());
         assertEquals(invocationList.pollFirst(), valueOf('a'));
         assertEquals(invocationList.pollFirst(), valueOf('b'));
         assertEquals(invocationList.pollFirst(), valueOf('b'));
@@ -87,7 +87,7 @@ public class StreamsTest {
         Integer sum = integerStream.reduce(0, (first, second) -> first + second);
 
         //then
-        assertEquals(sum, valueOf(27));
+        assertEquals(valueOf(27), sum);
     }
 
     @Test
@@ -99,7 +99,7 @@ public class StreamsTest {
         Integer sum = integerStream.reduce(0, (first, second) -> first + second);
 
         //then
-        assertEquals(sum, valueOf(27));
+        assertEquals(valueOf(27), sum);
     }
 
     @Test

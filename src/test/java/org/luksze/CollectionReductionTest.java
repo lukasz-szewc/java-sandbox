@@ -22,7 +22,7 @@ public class CollectionReductionTest {
                 TailoredCollection::add, TailoredCollection::addAll);
 
         //then
-        assertEquals(coll.toString(), "[1, 2, 3, 4, 5, 6]");
+        assertEquals("[1, 2, 3, 4, 5, 6]", coll.toString());
     }
 
     @Test
@@ -35,7 +35,7 @@ public class CollectionReductionTest {
                 TailoredCollection::addAndReturn, TailoredCollection::addAllAndReturn);
 
         //then
-        assertEquals(collection.toString(), "[1, 2, 3, 4, 5, 6]");
+        assertEquals("[1, 2, 3, 4, 5, 6]", collection.toString());
     }
 
     @Test
