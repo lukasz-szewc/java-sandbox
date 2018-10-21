@@ -2,7 +2,14 @@ package org.luksze;
 
 import org.junit.Test;
 
-import java.time.*;
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.Period;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
 import java.time.temporal.ChronoUnit;
 
 import static java.lang.Boolean.FALSE;
@@ -11,7 +18,9 @@ import static java.time.LocalDate.now;
 import static java.time.LocalDate.of;
 import static java.time.Month.FEBRUARY;
 import static java.time.Month.JUNE;
-import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertThat;
 
 public class NewJodaTimeTest {
@@ -61,12 +70,12 @@ public class NewJodaTimeTest {
         assertThat(period.getYears(), is(1));
         assertThat(period.getMonths(), is(4));
         assertThat(period.getDays(), is(19));
-        assertThat(period.toTotalMonths(), is(16l));
+        assertThat(period.toTotalMonths(), is(16L));
     }
 
     @Test
     public void canCreateDuration() throws Exception {
-        long seconds = 90l;
+        long seconds = 90;
         LocalDateTime referenceDateTime = now().atStartOfDay();
         Duration duration = Duration.between(referenceDateTime, referenceDateTime.plusSeconds(seconds));
         assertThat(duration.getSeconds(), is(seconds));

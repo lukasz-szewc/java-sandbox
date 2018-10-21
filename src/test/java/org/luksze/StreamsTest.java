@@ -18,7 +18,7 @@ import static org.junit.Assert.*;
 public class StreamsTest {
 
     @Test
-    public void simpleStreamTest() {
+    public void simpleStreamTest() throws Exception {
         //given
         Stream<Character> stream = Stream.of('e', 'c', 'x', 'k', 'a', 'h');
 
@@ -26,10 +26,10 @@ public class StreamsTest {
         Character[] sortedCharsLessThenG = stream
                 .filter(character -> character.compareTo('g') < 0)
                 .sorted()
-                .toArray(Character[]::new);
+                .toArray(value -> new Character[value]);
 
         //then
-        assertArrayEquals(sortedCharsLessThenG, new Character[]{'a', 'c', 'e'});
+        assertArrayEquals(new Character[]{'a', 'c', 'e'}, sortedCharsLessThenG);
     }
 
     @Test
@@ -45,10 +45,10 @@ public class StreamsTest {
         }).filter(string -> {
             invocationList.addLast(string);
             return true;
-        }).toArray(String[]::new);
+        }).toArray(value -> new String[value]);
 
         //then
-        assertEquals(invocationList.size(), 4);
+        assertEquals(4, invocationList.size());
         assertEquals(invocationList.pollFirst(), "a");
         assertEquals(invocationList.pollFirst(), "a");
         assertEquals(invocationList.pollFirst(), "b");
@@ -57,7 +57,7 @@ public class StreamsTest {
     }
 
     @Test
-    public void orderOfInvocationsMatter() {
+    public void orderOfInvocationsMatter() throws Exception {
         //given
         LinkedList<Character> invocationList = new LinkedList<>();
 
@@ -68,10 +68,10 @@ public class StreamsTest {
         }).map(character -> {
             invocationList.addLast(character);
             return character.toString();
-        }).toArray(String[]::new);
+        }).toArray(value -> new String[value]);
 
         //then
-        assertEquals(invocationList.size(), 3);
+        assertEquals(3, invocationList.size());
         assertEquals(invocationList.pollFirst(), valueOf('a'));
         assertEquals(invocationList.pollFirst(), valueOf('b'));
         assertEquals(invocationList.pollFirst(), valueOf('b'));
@@ -87,11 +87,23 @@ public class StreamsTest {
         Integer sum = integerStream.reduce(0, (first, second) -> first + second);
 
         //then
-        assertEquals(sum, valueOf(27));
+        assertEquals(valueOf(27), sum);
     }
 
     @Test
-    public void infiniteStreamExample() {
+    public void ssimpleSumReductionTest() throws Exception {
+        //given
+        Stream<Integer> integerStream = Stream.of(1, 4, 6, 7, 9);
+
+        //when
+        Integer sum = integerStream.reduce(0, (first, second) -> first + second);
+
+        //then
+        assertEquals(valueOf(27), sum);
+    }
+
+    @Test
+    public void infiniteStreamExample() throws Exception {
         //given
         Stream<YearOfLife> stream = Stream.iterate(new YearOfLife(1), YearOfLife::nextOne);
 
@@ -107,7 +119,7 @@ public class StreamsTest {
     }
 
     @Test
-    public void randomNumbersCanBeGeneratedAsStream() {
+    public void randomNumbersCanBeGeneratedAsStream() throws Exception {
         //given
         IntStream ints = new Random().ints(0, 30);
         AtomicInteger counter = new AtomicInteger();

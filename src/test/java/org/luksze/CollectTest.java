@@ -38,7 +38,7 @@ public class CollectTest {
                 Collection::addAll);
 
         //then
-        assertEquals(set.size(), 5);
+        assertEquals(5, set.size());
         assertTrue(set.containsAll(asList("0", "1", "2", "3", "4")));
     }
 
