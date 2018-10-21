@@ -18,7 +18,7 @@ import static org.junit.Assert.*;
 public class StreamsTest {
 
     @Test
-    public void simpleStreamTest() throws Exception {
+    public void simpleStreamTest() {
         //given
         Stream<Character> stream = Stream.of('e', 'c', 'x', 'k', 'a', 'h');
 
@@ -57,7 +57,7 @@ public class StreamsTest {
     }
 
     @Test
-    public void orderOfInvocationsMatter() throws Exception {
+    public void orderOfInvocationsMatter() {
         //given
         LinkedList<Character> invocationList = new LinkedList<>();
 
@@ -91,19 +91,7 @@ public class StreamsTest {
     }
 
     @Test
-    public void ssimpleSumReductionTest() throws Exception {
-        //given
-        Stream<Integer> integerStream = Stream.of(1, 4, 6, 7, 9);
-
-        //when
-        Integer sum = integerStream.reduce(0, (first, second) -> first + second);
-
-        //then
-        assertEquals(sum, valueOf(27));
-    }
-
-    @Test
-    public void infiniteStreamExample() throws Exception {
+    public void infiniteStreamExample() {
         //given
         Stream<YearOfLife> stream = Stream.iterate(new YearOfLife(1), YearOfLife::nextOne);
 
@@ -119,7 +107,7 @@ public class StreamsTest {
     }
 
     @Test
-    public void randomNumbersCanBeGeneratedAsStream() throws Exception {
+    public void randomNumbersCanBeGeneratedAsStream() {
         //given
         IntStream ints = new Random().ints(0, 30);
         AtomicInteger counter = new AtomicInteger();

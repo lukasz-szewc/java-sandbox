@@ -2,8 +2,6 @@ package org.luksze;
 
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -15,7 +13,7 @@ import static org.junit.Assert.assertTrue;
 public class CollectionReductionTest {
 
     @Test
-    public void collectToTailoredObject() throws Exception {
+    public void collectToTailoredObject() {
         //given
         Stream<Integer> integerStream = Stream.of(1, 2, 3, 4, 5, 6);
 
@@ -24,11 +22,11 @@ public class CollectionReductionTest {
                 TailoredCollection::add, TailoredCollection::addAll);
 
         //then
-        assertEquals(coll.toString(), "[1, 2, 3, 4, 5, 6]");
+        assertEquals("[1, 2, 3, 4, 5, 6]", coll.toString());
     }
 
     @Test
-    public void reduceToTailoredObject() throws Exception {
+    public void reduceToTailoredObject() {
         //given
         Stream<Integer> integerStream = Stream.of(1, 2, 3, 4, 5, 6);
 
@@ -37,11 +35,11 @@ public class CollectionReductionTest {
                 TailoredCollection::addAndReturn, TailoredCollection::addAllAndReturn);
 
         //then
-        assertEquals(collection.toString(), "[1, 2, 3, 4, 5, 6]");
+        assertEquals("[1, 2, 3, 4, 5, 6]", collection.toString());
     }
 
     @Test
-    public void collectToTailoredObjectLargeStream() throws Exception {
+    public void collectToTailoredObjectLargeStream() {
         //given
         List<Integer> list = IntStream.range(0, 40000).boxed().collect(toList());
 
@@ -54,7 +52,7 @@ public class CollectionReductionTest {
     }
 
     @Test
-    public void reduceToTailoredObjectLargeStream() throws Exception {
+    public void reduceToTailoredObjectLargeStream() {
         //given
         List<Integer> list = IntStream.range(0, 20000).boxed().collect(toList());
 

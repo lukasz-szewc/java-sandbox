@@ -15,7 +15,7 @@ import static org.junit.Assert.assertTrue;
 public class CollectTest {
 
     @Test
-    public void stringCollection() throws Exception {
+    public void stringCollection() {
         //given
         Stream<Integer> integerStream = Stream.of(1, 2, 3, 4, 5, 6);
 
@@ -23,11 +23,11 @@ public class CollectTest {
         StringBuilder collect = integerStream.collect(StringBuilder::new, this::appendIntegers, StringBuilder::append);
 
         //then
-        assertEquals(collect.toString(), "1, 2, 3, 4, 5, 6, ");
+        assertEquals("1, 2, 3, 4, 5, 6, ", collect.toString());
     }
 
     @Test
-    public void canCollectToGivenRandomJavaCollection() throws Exception {
+    public void canCollectToGivenRandomJavaCollection() {
         //given
         IntStream range = IntStream.range(0, 5);
 
